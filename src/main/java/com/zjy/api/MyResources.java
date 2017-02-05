@@ -1,6 +1,9 @@
 package com.zjy.api;
 
+import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.zjy.entities.UserInfo;
+import org.glassfish.jersey.grizzly2.httpserver.GrizzlyHttpServerFactory;
+import org.glassfish.jersey.server.ResourceConfig;
 
 import javax.ws.rs.*;
 import javax.ws.rs.client.Client;
@@ -8,14 +11,23 @@ import javax.ws.rs.client.ClientBuilder;
 import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-
-//import org.codehaus.jackson.jaxrs.JacksonJsonProvider;
+import java.net.URI;
+import java.util.Date;
 
 /**
  * Created by chahongjing on 2017/2/4.
  */
 @Path("/hello")
 public class MyResources {
+
+    public static void main(String[] args) throws InterruptedException {
+        ResourceConfig rc = new ResourceConfig().packages(MyResources.class.getPackage().getName()).register(JacksonJsonProvider.class);
+        GrizzlyHttpServerFactory.createHttpServer(URI.create("http://localhost:8080/api/rest"), rc);
+        while(true) {
+            System.out.println(new Date());
+            Thread.sleep(1000);
+        }
+    }
 
     @GET
     // 可接受类型
@@ -44,8 +56,8 @@ public class MyResources {
     // 可接受类型
     @Consumes({MediaType.TEXT_PLAIN})
     public void test() {
-        Client client = ClientBuilder.newClient();
-        //Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);// 注册json 支持
+        //Client client = ClientBuilder.newClient();
+        Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class);// 注册json 支持
         WebTarget target = client.target("http://localhost:8080/api/rest/hello/users006");
         Response response = target.request().get();
         UserInfo user = response.readEntity(UserInfo.class);
