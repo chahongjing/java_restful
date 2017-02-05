@@ -5,26 +5,26 @@
     <artifactId>restful</artifactId>
     <packaging>war</packaging>
     <version>1.0</version>
-    <name>restful Maven Webapp</name>
+    <name>restful</name>
     <url>http://maven.apache.org</url>
 
     <properties>
-        <jersey.version>2.25</jersey.version>
         <jstl.version>1.2</jstl.version>
         <taglibs.version>1.1.2</taglibs.version>
         <servlet.version>3.0.1</servlet.version>
         <jsp.version>2.0</jsp.version>
+        <jersey.version>2.25</jersey.version>
+        <junit.version>4.11</junit.version>
     </properties>
-
 
     <dependencies>
         <dependency>
             <groupId>junit</groupId>
             <artifactId>junit</artifactId>
-            <version>3.8.1</version>
+            <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
-        <!-- jstl, taglibs, jsp, servlet -->
+        <!-- jsp, servlet -->
         <dependency>
             <groupId>javax.servlet</groupId>
             <artifactId>javax.servlet-api</artifactId>
@@ -34,16 +34,6 @@
             <groupId>javax.servlet</groupId>
             <artifactId>jsp-api</artifactId>
             <version>${jsp.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>javax.servlet</groupId>
-            <artifactId>jstl</artifactId>
-            <version>${jstl.version}</version>
-        </dependency>
-        <dependency>
-            <groupId>taglibs</groupId>
-            <artifactId>standard</artifactId>
-            <version>${taglibs.version}</version>
         </dependency>
 
         <!--jersey-->
@@ -60,9 +50,9 @@
         </dependency>
         <!-- 应用程序添加此项 -->
         <!--<dependency>-->
-            <!--<groupId>org.glassfish.jersey.containers</groupId>-->
-            <!--<artifactId>jersey-container-grizzly2-http</artifactId>-->
-            <!--<version>${jersey.version}</version>-->
+        <!--<groupId>org.glassfish.jersey.containers</groupId>-->
+        <!--<artifactId>jersey-container-grizzly2-http</artifactId>-->
+        <!--<version>${jersey.version}</version>-->
         <!--</dependency>-->
         <dependency>
             <groupId>org.glassfish.jersey.media</groupId>
