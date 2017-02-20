@@ -15,6 +15,9 @@
         <jsp.version>2.0</jsp.version>
         <jersey.version>2.25</jersey.version>
         <junit.version>4.11</junit.version>
+        <httpclientnew.version>4.5.3</httpclientnew.version>
+        <httpclient.version>3.1</httpclient.version>
+        <commons.lang.version>3.5</commons.lang.version>
     </properties>
 
     <dependencies>
@@ -58,6 +61,29 @@
             <artifactId>jersey-media-multipart</artifactId>
             <version>${jersey.version}</version>
         </dependency>
+        <!-- httpclient -->
+        <dependency>
+            <groupId>commons-httpclient</groupId>
+            <artifactId>commons-httpclient</artifactId>
+            <version>${httpclient.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpclient</artifactId>
+            <version>${httpclientnew.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>org.apache.httpcomponents</groupId>
+            <artifactId>httpmime</artifactId>
+            <version>${httpclientnew.version}</version>
+        </dependency>
+        <!-- appache.commons -->
+        <dependency>
+            <groupId>org.apache.commons</groupId>
+            <artifactId>commons-lang3</artifactId>
+            <version>${commons.lang.version}</version>
+        </dependency>
+
     </dependencies>
 
     <build>

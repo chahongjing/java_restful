@@ -2,6 +2,7 @@ package com.zjy.api;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
 import com.zjy.entities.UserInfo;
+import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
 import org.glassfish.jersey.server.ResourceConfig;
@@ -14,8 +15,8 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
-import java.net.URI;
-import java.util.Date;
+import java.nio.charset.StandardCharsets;
+import java.util.*;
 
 /**
  * Created by chahongjing on 2017/2/4.
@@ -24,11 +25,20 @@ import java.util.Date;
 public class MyResources {
 
     public static void main(String[] args) throws InterruptedException {
+//        Map<String, String> params = new HashMap<>();
+//        params.put("name", "曾军毅");
+//        params.put("age", "1");
+//        Map<String, String> files = new HashMap<>();
+//        files.put("file", "d://b.txt");
+//        String s = HttpHelper.doGet("http://localhost:8080/api/rest/hello/123", params);
+//        String ss = HttpHelper.doPost("http://localhost:8080/api/rest/hello/testpost", params);
+//        String sss = HttpHelper.doPost("http://localhost:8080/api/rest/hello/testpost1", params, files);
+
         ResourceConfig rc = new ResourceConfig().packages(MyResources.class.getPackage().getName())
                 .register(JacksonJsonProvider.class).register(MultiPartFeature.class);
         // String path = PropertiesHelper.getInstance().getProperties("serviceUrl");
         String path = "http://localhost:8080/api/rest";
-        // GrizzlyHttpServerFactory.createHttpServer(URI.create(path), rc);
+        //GrizzlyHttpServerFactory.createHttpServer(URI.create(path), rc);
         while (true) {
             System.out.println(new Date());
             Thread.sleep(5000);
@@ -93,6 +103,16 @@ public class MyResources {
     // 可接受类型
     @Consumes({MediaType.MULTIPART_FORM_DATA})
     public String testPost1(FormDataMultiPart form, @Context HttpServletRequest request) {
+        for (Map.Entry<String, List<FormDataBodyPart>> entry : form.getFields().entrySet()) {
+            System.out.println("key:" + entry.getKey());
+            for (FormDataBodyPart part : entry.getValue()) {
+                if (part.getContentDisposition().getFileName() != null) {
+                    System.out.println("value:" + part.getContentDisposition().getFileName());
+                } else {
+                    System.out.println("value:" + part.getEntityAs(String.class));
+                }
+            }
+        }
         // FormDataMultiPart form
         // @FormDataParam("file") InputStream fileInputStream
         // @FormDataParam("file") FormDataContentDisposition file
