@@ -15,7 +15,7 @@ public class ApiApplication extends ResourceConfig {
         //注册数据转换器
         register(JacksonJsonProvider.class);
         register(MultiPartFeature.class);
-        // 访问名称：tomcat配置地址（注意要包含context）/rest/hello/returnentity
-        // 如：http://localhost:9090/restful/rest/hello/returnentity
+        // 访问名称：tomcat配置地址（注意要包含context）/rest/hello
+        // 如：http://localhost:9090/restful/rest/hello
     }
 }
