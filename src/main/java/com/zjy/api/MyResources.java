@@ -34,12 +34,11 @@ public class MyResources {
 //        String s = HttpHelper.doGet("http://localhost:8080/api/rest/hello/123", params);
 //        String ss = HttpHelper.doPost("http://localhost:8080/api/rest/hello/testpost", params);
 //        String sss = HttpHelper.doPost("http://localhost:8080/api/rest/hello/testpost1", params, files);
-
         ResourceConfig rc = new ResourceConfig().packages(MyResources.class.getPackage().getName())
                 .register(JacksonJsonProvider.class).register(MultiPartFeature.class);
         // String path = PropertiesHelper.getInstance().getProperties("serviceUrl");
         String path = "http://localhost:8080/api/rest";
-        //GrizzlyHttpServerFactory.createHttpServer(URI.create(path), rc);
+        // GrizzlyHttpServerFactory.createHttpServer(URI.create(path), rc);
         while (true) {
             System.out.println(new Date());
             Thread.sleep(5000);
@@ -66,7 +65,8 @@ public class MyResources {
     @Path("/test")
     // 可接受类型
     @Consumes({MediaType.TEXT_PLAIN})
-    public String test() {
+    @Produces(MediaType.APPLICATION_JSON)
+    public UserInfo test() {
         //Client client = ClientBuilder.newClient();
         Client client = ClientBuilder.newClient().register(JacksonJsonProvider.class).register(MultiPartFeature.class);// 注册json 支持
         String path = "http://localhost:8080/api/rest";
@@ -79,11 +79,11 @@ public class MyResources {
         user = response.readEntity(UserInfo.class);
         System.out.println(user.getUserName());
         response.close();
-        return "";
+        return user;
     }
 
     @GET
-    @Path("/{id}")
+    @Path("/testGet/{id}")
     // 可接受类型
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
     public String testGet(@QueryParam("name") String name, @PathParam("id") int id, @Context HttpServletRequest request) {
@@ -92,7 +92,7 @@ public class MyResources {
     }
 
     @POST
-    @Path("/testpost")
+    @Path("/testPost")
     // 可接受类型
     @Consumes({MediaType.APPLICATION_FORM_URLENCODED})
     public String testPost(@FormParam("name") String name, @FormParam("age") int age, @Context HttpServletRequest request) {
@@ -100,10 +100,10 @@ public class MyResources {
     }
 
     @POST
-    @Path("/testpost1")
+    @Path("/testPostWithFile")
     // 可接受类型
     @Consumes({MediaType.MULTIPART_FORM_DATA})
-    public String testPost1(FormDataMultiPart form, @Context HttpServletRequest request) {
+    public String testPostWithFile(FormDataMultiPart form, @Context HttpServletRequest request) {
         for (Map.Entry<String, List<FormDataBodyPart>> entry : form.getFields().entrySet()) {
             System.out.println("key:" + entry.getKey());
             for (FormDataBodyPart part : entry.getValue()) {

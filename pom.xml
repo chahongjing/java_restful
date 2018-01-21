@@ -16,7 +16,6 @@
         <jersey.version>2.25</jersey.version>
         <junit.version>4.11</junit.version>
         <httpclientnew.version>4.5.3</httpclientnew.version>
-        <httpclient.version>3.1</httpclient.version>
         <commons.lang.version>3.5</commons.lang.version>
     </properties>
 
@@ -60,12 +59,6 @@
             <groupId>org.glassfish.jersey.media</groupId>
             <artifactId>jersey-media-multipart</artifactId>
             <version>${jersey.version}</version>
-        </dependency>
-        <!-- httpclient -->
-        <dependency>
-            <groupId>commons-httpclient</groupId>
-            <artifactId>commons-httpclient</artifactId>
-            <version>${httpclient.version}</version>
         </dependency>
         <dependency>
             <groupId>org.apache.httpcomponents</groupId>
