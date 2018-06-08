@@ -1,6 +1,6 @@
 @echo off
 title restfulapp 30001
-@echo on
+echo.
+echo %cd%\   java -jar target/restfulapp.jar
 java -jar target/restfulapp.jar
-@echo off
 pause;
