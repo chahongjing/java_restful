@@ -1,7 +1,6 @@
-package com.zjy.api;
+package com.zjy;
 
 import com.fasterxml.jackson.jaxrs.json.JacksonJsonProvider;
-import com.zjy.entities.UserInfo;
 import org.glassfish.jersey.media.multipart.FormDataBodyPart;
 import org.glassfish.jersey.media.multipart.FormDataMultiPart;
 import org.glassfish.jersey.media.multipart.MultiPartFeature;
