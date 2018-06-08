@@ -5,11 +5,12 @@
     <parent>
         <artifactId>restfulmain</artifactId>
         <groupId>com.zjy</groupId>
-        <version>${project.version}</version>
+        <version>1.0</version>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>restfulapp</artifactId>
+    <packaging>jar</packaging>
 
     <name>restfulapp</name>
     <!-- FIXME change it to the project's website -->
@@ -60,7 +61,7 @@
     </profiles>
 
     <build>
-        <finalName>restfulweb</finalName>
+        <finalName>restfulapp</finalName>
         <resources>
             <resource>
                 <directory>src/main/resources</directory>

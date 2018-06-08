@@ -4,7 +4,7 @@
     <groupId>com.zjy</groupId>
     <artifactId>restfulmain</artifactId>
     <packaging>pom</packaging>
-    <version>${project.version}</version>
+    <version>1.0</version>
     <name>restfulmain</name>
     <url>http://maven.apache.org</url>
 
@@ -14,7 +14,6 @@
     </modules>
 
     <properties>
-        <project.version>1.0</project.version>
         <jstl.version>1.2</jstl.version>
         <taglibs.version>1.1.2</taglibs.version>
         <servlet.version>3.0.1</servlet.version>
@@ -102,18 +101,53 @@
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-compiler-plugin</artifactId>
                     <version>${maven.compiler.version}</version>
+                    <configuration>
+                        <source>${java.source.version}</source>
+                        <target>${java.target.version}</target>
+                        <encoding>${encoding}</encoding>
+                        <!--<testFailureIgnore>true</testFailureIgnore>-->
+                    </configuration>
                 </plugin>
                 <!-- 排除jar包中的配置文件 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-jar-plugin</artifactId>
                     <version>${maven.jar.version}</version>
+                    <configuration>
+                        <excludes>
+                            <exclude>**/logback.xml</exclude>
+                            <exclude>**/META-INF/spring/**</exclude>
+                        </excludes>
+                        <!-- 打包jar文件时，配置manifest文件添加main函数入口， 通过java -jar xxxx.jar运行 -->
+                        <archive>
+                            <manifest>
+                                <addClasspath>true</addClasspath>
+                                <classpathPrefix>lib/</classpathPrefix>
+                                <!-- 主方法所在类名 -->
+                                <mainClass>com.zjy.App</mainClass>
+                            </manifest>
+                        </archive>
+                    </configuration>
                 </plugin>
                 <!-- 将依赖包放到lib文件夹中 -->
                 <plugin>
                     <groupId>org.apache.maven.plugins</groupId>
                     <artifactId>maven-dependency-plugin</artifactId>
                     <version>${maven.dependency.version}</version>
+                    <executions>
+                        <execution>
+                            <id>copy</id>
+                            <phase>package</phase>
+                            <goals>
+                                <goal>copy-dependencies</goal>
+                            </goals>
+                            <configuration>
+                                <outputDirectory>
+                                    ${project.build.directory}/lib
+                                </outputDirectory>
+                            </configuration>
+                        </execution>
+                    </executions>
                 </plugin>
             </plugins>
         </pluginManagement>

@@ -4,14 +4,14 @@
     <parent>
         <artifactId>restfulmain</artifactId>
         <groupId>com.zjy</groupId>
-        <version>${project.version}</version>
+        <version>1.0</version>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.zjy</groupId>
     <artifactId>restfulweb</artifactId>
     <packaging>war</packaging>
-    <version>${project.version}</version>
+    <version>1.0</version>
     <name>restfulweb</name>
     <url>http://maven.apache.org</url>
 
@@ -146,6 +146,15 @@
                         <exclude>**/logback.xml</exclude>
                         <exclude>**/META-INF/spring/**</exclude>
                     </excludes>
+                    <!-- 打包jar文件时，配置manifest文件添加main函数入口， 通过java -jar xxxx.jar运行 -->
+                    <archive>
+                        <manifest>
+                            <addClasspath>true</addClasspath>
+                            <classpathPrefix>lib/</classpathPrefix>
+                            <!-- 主方法所在类名 -->
+                            <mainClass>com.zjy.App</mainClass>
+                        </manifest>
+                    </archive>
                 </configuration>
             </plugin>
         </plugins>
