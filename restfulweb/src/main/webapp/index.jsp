@@ -4,7 +4,7 @@
     <title>Title</title>
 </head>
 <body>
-<h2>web页面访问成功</h2>
+<h2>web页面访问成功！</h2>
 <p><a href="<%= request.getContextPath()%>/rest/hello" target="_blank">restful服务</a></p>
 </body>
 </html>
