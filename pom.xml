@@ -15,13 +15,13 @@
 
     <properties>
         <jstl.version>1.2</jstl.version>
-        <taglibs.version>1.1.2</taglibs.version>
-        <servlet.version>3.0.1</servlet.version>
+        <taglibs.version>1.2</taglibs.version>
+        <servlet.version>4.0.1</servlet.version>
         <jsp.version>2.0</jsp.version>
         <jersey.version>2.25</jersey.version>
         <junit.version>4.11</junit.version>
         <httpclientnew.version>4.5.3</httpclientnew.version>
-        <commons.lang.version>3.5</commons.lang.version>
+        <commons.lang.version>3.9</commons.lang.version>
         <maven.compiler.version>3.7.0</maven.compiler.version>
         <maven.jar.version>3.0.2</maven.jar.version>
         <maven.dependency.version>3.0.2</maven.dependency.version>
